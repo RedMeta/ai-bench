@@ -155,6 +155,7 @@ activemq-data/
 .venv
 env/
 venv/
+/llm-bench-results/
 ENV/
 env.bak/
 venv.bak/

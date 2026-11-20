@@ -19,25 +19,44 @@ The script uses only the Python standard library.
 python3 ollama_bench.py
 ```
 
-By default, this runs `qwen3.5:4b` and `bonsai-2:9b`. To select models or
-adjust generation settings:
+By default, this runs every model currently installed in Ollama, so newly
+installed models are included automatically. To select models or adjust
+generation settings:
 
 ```bash
-python3 ollama_bench.py --models qwen3.5:4b bonsai-2:9b --ctx 4096 --predict 600
+python3 ollama_bench.py --models qwen3.5:4b bonsai-2:9b --ctx 8192 --repeat 3 --vary-seed
 ```
 
-Run `python3 ollama_bench.py --help` for all options. Each run creates a
-timestamped directory under `llm-bench-results/`, containing a summary CSV,
-per-test response JSON and telemetry CSV files, run metadata, and combined
-results JSON.
+The benchmark warms each model before measuring it, uses a fixed seed and
+temperature, and records one measured run per test by default. `--repeat N`
+repeats each test to show run-to-run variation; `--no-warmup` disables warmup.
+By default, every repeat uses seed `42`; use `--seed N` to select another seed
+or `--vary-seed` to increment it for each repetition and compare different
+outputs in one run.
+`--predict N` overrides every test's generation cap, which can truncate longer
+answers. Run `python3 ollama_bench.py --help` for all options.
 
-The tool-call test records whether a model emits a tool call; it does not
-execute tools. Results are hardware- and configuration-dependent and are not
-intended as a general model ranking.
+Each run creates a timestamped directory under the ignored
+`llm-bench-results/` directory, with raw responses, telemetry, run metadata,
+and CSV/JSON summaries. The tool-use test executes only deterministic local
+mock tools and checks the full lookup → calculation → answer sequence. The
+long-context test checks both an exact JSON fact object and required checklist
+items. Coding and architecture answers remain available for qualitative review.
+The debugging task has a machine-checked rubric for two reproducible defects
+and two deliberate non-bugs, with separate credit for identifying each bug,
+naming its exception, and proposing a correction. Coding and architecture
+receive static heuristic scores; these identify obvious omissions and common
+errors but do not execute or prove generated code correct. Review those answers
+manually. A nonzero exit indicates an API, telemetry, completion, or strict
+tool/context check failure; a partial debugging score is reported without
+failing the whole run.
 
-## Included results
+Generation tasks request answer-only output so a visible reasoning trace does
+not consume the budget needed for the answer. The prompts still ask for
+explanations and design justification where relevant.
 
-`llm-bench-results/20261120-131836/` contains one captured run for
-`qwen3.5:4b` and `bonsai-2:9b`. The response files and telemetry are included
-to make that run inspectable and reproducible; they may contain machine
-configuration and generated model output.
+Run the local unit tests with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
