@@ -1,0 +1,11 @@
+model,test_id,test_name,status,wall_seconds,prompt_tokens,generated_tokens,generation_seconds,tokens_per_second,prompt_eval_seconds,load_seconds,total_seconds,done_reason,response_file,telemetry_file,error
+qwen3.5:4b,coding,Basic coding,ok,16.98,120,650,12.093,53.75,0.133,4.746,16.975,length,qwen3.5_4b-coding-response.json,qwen3.5_4b-coding-telemetry.csv,
+qwen3.5:4b,debugging,Debugging,ok,12.38,233,650,12.19,53.32,0.131,0.001,12.364,length,qwen3.5_4b-debugging-response.json,qwen3.5_4b-debugging-telemetry.csv,
+qwen3.5:4b,architecture,Reasoning and architecture,ok,14.94,157,800,14.799,54.06,0.102,0.001,14.928,length,qwen3.5_4b-architecture-response.json,qwen3.5_4b-architecture-telemetry.csv,
+qwen3.5:4b,tool_call,Tool calling,ok,2.27,447,111,2.038,54.48,0.195,0.006,2.271,stop,qwen3.5_4b-tool_call-response.json,qwen3.5_4b-tool_call-telemetry.csv,
+qwen3.5:4b,long_context,Context retention,ok,8.52,274,450,8.347,53.91,0.139,0.001,8.511,length,qwen3.5_4b-long_context-response.json,qwen3.5_4b-long_context-telemetry.csv,
+bonsai-2:9b,coding,Basic coding,ok,15.94,120,650,10.843,59.95,0.195,4.893,15.933,length,bonsai-2_9b-coding-response.json,bonsai-2_9b-coding-telemetry.csv,
+bonsai-2:9b,debugging,Debugging,ok,11.13,233,650,10.924,59.5,0.181,0.001,11.128,length,bonsai-2_9b-debugging-response.json,bonsai-2_9b-debugging-telemetry.csv,
+bonsai-2:9b,architecture,Reasoning and architecture,ok,13.5,157,800,13.321,60.06,0.146,0.0,13.497,length,bonsai-2_9b-architecture-response.json,bonsai-2_9b-architecture-telemetry.csv,
+bonsai-2:9b,tool_call,Tool calling,ok,2.66,447,139,2.302,60.38,0.317,0.001,2.656,stop,bonsai-2_9b-tool_call-response.json,bonsai-2_9b-tool_call-telemetry.csv,
+bonsai-2:9b,long_context,Context retention,ok,7.71,274,450,7.459,60.33,0.213,0.001,7.708,length,bonsai-2_9b-long_context-response.json,bonsai-2_9b-long_context-telemetry.csv,

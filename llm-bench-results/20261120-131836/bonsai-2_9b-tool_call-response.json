@@ -1,0 +1,30 @@
+{
+  "model": "bonsai-2:9b",
+  "created_at": "2026-11-20T12:20:15.012565889Z",
+  "message": {
+    "role": "assistant",
+    "content": "",
+    "thinking": "The user wants me to:\n1. First look up customer C-104 using the lookup_customer tool\n2. If the customer has a monthly spend, multiply it by 12 to get annual spend\n3. If no customer is found, explain that I cannot calculate it\n\nI need to call lookup_customer first with customer_id \"C-104\". Then based on the result, I'll either use the calculator or explain the situation.\n\nLet me start with the lookup_customer call.",
+    "tool_calls": [
+      {
+        "id": "call_cu7fb4tj",
+        "function": {
+          "index": 0,
+          "name": "lookup_customer",
+          "arguments": {
+            "customer_id": "C-104"
+          }
+        }
+      }
+    ]
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 2655550190,
+  "load_duration": 1342318,
+  "prompt_eval_count": 447,
+  "prompt_eval_cached_count": 0,
+  "prompt_eval_duration": 316991000,
+  "eval_count": 139,
+  "eval_duration": 2302194000
+}
